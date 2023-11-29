@@ -48,7 +48,15 @@
     {% if result %}
         <!-- 결과가 있을 때 -->
         <h5 class="result">{{ result }}</h5>
-        <img class="image" src="{{ image_path }}" alt="Uploaded Image" style="max-width: 450px;">
+        <img id="Uploaded-Image" class="image" src="{{ image_path }}" alt="Uploaded Image" style="max-width: 450px;">
+        <script>
+            // 이미지가 보이는 부분으로 스크롤을 이동
+            var imageElement = document.getElementById("Uploaded-Image");
+            if (imageElement) {
+                var imagePosition = imageElement.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo(0, imagePosition);
+            }
+        </script>
     {% elif result == "에러:예측도가 너무 낮습니다. 아직 업데이트 되지 않은 실험 도구일 수 있습니다." %}
         <!-- 결과에 오류가 생겼을 때 -->
         <h5>{{ result }}</h5>
@@ -56,9 +64,18 @@
         <form method="GET" action="/">
             <input type="submit" value="Go back to Upload Page">
         </form>
+        <script>
+            // 이미지가 보이는 부분으로 스크롤을 이동
+            var imageElement = document.getElementById("Uploaded-Image");
+            if (imageElement) {
+                var imagePosition = imageElement.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo(0, imagePosition);
+            }
+        </script>
     {% else %}
     <!-- 결과가 없을 때는 아무것도 안뜸 -->
     {% endif %}
+
 
     <!-- 이미지 선택 및 업로드 -->
     <form method="POST" enctype="multipart/form-data" action="/">
