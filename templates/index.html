@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=devie-width, initial-scale=1.0">
+    <title>LEG</title>
+    <!-- 외부 CSS 파일 및 글꼴 추가 -->
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <style>
+        input[type="file"] {
+            position: absolute;
+            left: 660px;
+            top: 790px;
+            color: white;
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+    </style>
+    <style>
+        input[type="submit"] {
+            position: absolute;
+            left: 900px;
+            top: 790px;
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- 제주과학고등학교와 이디저디 사이트에 바로 접속하는 버튼 -->
+    <nav>
+        <image src="https://media.licdn.com/dms/image/C560BAQGf4VsreJOdKw/company-logo_200_200/0/1659042800133?e=2147483647&v=beta&t=HqdPTiVebnF7zsWJzm_GATgsGMstg9piZgt_6clxd-E" alt="" width="50px" height="50px">
+        <button type="button" class="button1" onclick="location.href='https://new.xn--2z1ba422lbqa.com/'">이디저디</button>
+        <button type="button" class="button2" onclick="location.href='https://jeju-s.jje.hs.kr/'">제주과학고등학교</button>
+    </nav>
+    <!-- 웹페이지 꾸미기 -->
+    <section class="section1">
+      <h1>Laboratory Equipment Guide</h1>
+      <h2 style="text-align:right">How To Use?</h2>
+    </section>
+    <!-- 사용법 설명글 -->
+    <section class="section2">
+        <h6>명칭 혹은 사용법을 모르는 실험기구를 1:1 비율로 사진 촬영합니다.<br>찍은 사진을 아래 창을 통해 업로드합니다.<br>잠시 후, 가이드 영상을 제공받을 것입니다.</h6>
+    </section>
+
+    {% if result %}
+        <!-- 결과가 있을 때 -->
+        <h5 class="result">{{ result }}</h5>
+        <img class="image" src="{{ image_path }}" alt="Uploaded Image" style="max-width: 450px;">
+    {% elif result == "에러:예측도가 너무 낮습니다. 아직 업데이트 되지 않은 실험 도구일 수 있습니다." %}
+        <!-- 결과에 오류가 생겼을 때 -->
+        <h5>{{ result }}</h5>
+        <img src="{{ image_path }}" alt="Uploaded Image" style="max-width: 450px;">
+        <form method="GET" action="/">
+            <input type="submit" value="Go back to Upload Page">
+        </form>
+    {% else %}
+    <!-- 결과가 없을 때는 아무것도 안뜸 -->
+    {% endif %}
+
+    <!-- 이미지 선택 및 업로드 -->
+    <form method="POST" enctype="multipart/form-data" action="/">
+        <input type="file" name="file" accept="image/*">
+        <input type="submit" value="   업로드   ">
+    </form>
+    <!-- 결과값(result)에 따른 가이드 영상 -->
+    <section class="section3">
+        <iframe class="video" width="747" height="420" src="newVideoURL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        {% if result %}
+        <script>
+            var result = "{{ result }}";
+            var defaultVideoURL = "https://www.youtube.com/embed/zgyHStzGgYc?si=bzKpRUKvy1RNuhoi";
+            var newVideoURL = defaultVideoURL;
+        
+            if (result === "마이크로피펫") {
+                newVideoURL = "https://www.youtube.com/embed/t3KpKxPyh9c?si=gzSaxF0mX3yFtPL0";
+            } else if (result === "알코올 램프") {
+                newVideoURL = "https://www.youtube.com/embed/ieXlDcVLJaI?si=n4E0fwCrm7vdwAmm";
+            } else if (result === "집기병") {
+                newVideoURL = "https://www.youtube.com/embed/m6BOXwKFKWM?si=EejFUnkp9j9XOgnY";
+            } else if (result === "실험실 클램프") {
+                newVideoURL = "https://www.youtube.com/embed/EdalR4YR6Gc?si=atF3W0oeb9cDPjV8";
+            } else if (result === "스포이드 공병") {
+                newVideoURL = "https://www.youtube.com/embed/-_dvFj_q86Q?si=MytWJlPNiuhk_Fp_";
+            } else if (result === "속슬렛추출장치") {
+                newVideoURL = "https://www.youtube.com/embed/bLiD_E3DyQg?si=zhT8FzjoIbKZ_Lbf";
+            } else if (result === "sieves") {
+                newVideoURL = "https://www.youtube.com/embed/k6ohXbmvDcs?si=2Gq1kvQT8dPRY9jA";
+            } else if (result === "separatory Funnel") {
+                newVideoURL = "https://www.youtube.com/embed/lMf1L8HP7qw?si=XVugUV_Iiyatpcs4";
+            } else if (result === "비커") {
+                newVideoURL = "https://www.youtube.com/embed/JUkhYjl3GDs?si=M7dX3P4_QopGTdrZ";
+            }  else if (result === "오실로스코프") {
+                newVideoURL = "https://www.youtube.com/embed/6hsk6pAoRT8?si=uK_jN_fxJoY7hubu";
+            } else if (result === "부피플라스크") {
+                newVideoURL = "https://www.youtube.com/embed/pHwPs9mlnaA?si=xq95miJ9rlCbT4_B";
+            } else if (result === "삼각플라스크") {
+                newVideoURL = "https://www.youtube.com/embed/QsB-JOPauT4?si=gKJZaljkx5nRrzqB";
+            } else if (result === "증발 접시") {
+                newVideoURL = "https://www.youtube.com/embed/NGI2TzPl904?si=LIZs9yLfFRRwrbzi";
+            } else if (result === "웨잉 디쉬") {
+                newVideoURL = "";
+                var helloText = document.createElement('p');
+                helloText.style.width = '600px';
+                helloText.innerText = "무게를 측정하는 데 사용되는 작은 그릇이다. 보통 알루미늄, 플라스틱, 유리 등의 재료로 만들어진다.정밀한 무게 측정을 위해 전자저울과 함께 사용되거나, 액체나 분말과 같은 시료를 담거나 이동하는 데 사용된다. 웨잉디쉬는 일회용이거나 재사용 가능한 것이 있다. 웨잉디쉬의 모양과 크기는 다양하며, 실험의 목적과 필요에 따라 선택할 수 있다.";
+                helloText.style.position = 'absolute';
+                helloText.style.top = '1750px';
+                helloText.style.left = '540px';
+                helloText.style.fontFamily = "'Gowun Dodum', sans-serif"; // 폰트 설정
+                helloText.style.color = '#FFFFFF';
+                helloText.style.fontSize = '1.4em';
+                helloText.style.lineHeight = '2';
+                document.body.appendChild(helloText);
+                newVideoURL = "";
+            } else if (result === "코니칼튜브") {
+                newVideoURL = "https://www.youtube.com/embed/6PMvPuXgwAQ?si=swiPOVNP0GJl6eI7";
+            } else if (result === "데시케이터") {
+                newVideoURL = "https://www.youtube.com/embed/vT22dSNndhs?si=eoKxo_-4SF3LLHZl";
+            } else if (result === "임호프콘") {
+                newVideoURL = "https://www.youtube.com/embed/Lql5wK5Sfvk?si=-J2VmKhNunQHr7LC";
+            }  else if (result === "막자사발") {
+                newVideoURL = "https://www.youtube.com/embed/mRRuYzD4wxQ?si=x24KeFg2PbwfhC2c";
+            } else if (result === "메스실린더") {
+                newVideoURL = "https://www.youtube.com/embed/bX46EYMy0t8?si=BvUt2MArgG8awdLy";
+            } else if (result === "약수저") {
+                newVideoURL = "https://www.youtube.com/embed/QsB-JOPauT4?si=gKJZaljkx5nRrzqB";
+            } else if (result === "여과지") {
+                newVideoURL = "https://www.youtube.com/embed/gPga0TCBTdg?si=44auarn9MSIUQB3g";
+            } else if (result === "파라필름") {
+                newVideoURL = "https://www.youtube.com/embed/_iLT68jgCfE?si=QUppeRULvI8sP3Ic";
+            } else if (result === "큐벳") {
+                newVideoURL = "https://www.youtube.com/embed/qyA-_VTNDis?si=S5QKDKqwQ6bizWcp";
+            } else if (result === "웨잉 디쉬") {
+                newVideoURL = "";
+            } else if (result === "홈판") {
+                newVideoURL = "https://www.youtube.com/embed/mk4a9atdZe4?si=Bm9_qGudWQseGmMH";
+            }
+            document.querySelector('.section3 iframe').src = newVideoURL;
+        </script>
+        {% else %}
+        <!-- 결과 없을 때 아무것도 안뜸-->
+        {% endif %}
+    </section>
+    <!-- 만든이 -->
+    <h4 -class="jshs">제주과학고등학교<br>김나연 양승우</h4>
+</body>
+</html>
