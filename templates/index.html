@@ -113,7 +113,6 @@
                 helloText.style.fontSize = '1.4em';
                 helloText.style.lineHeight = '2';
                 document.body.appendChild(helloText);
-                newVideoURL = "";
             } else if (result === "코니칼튜브") {
                 newVideoURL = "https://www.youtube.com/embed/6PMvPuXgwAQ?si=swiPOVNP0GJl6eI7";
             } else if (result === "데시케이터") {
@@ -140,7 +139,7 @@
             document.querySelector('.section3 iframe').src = newVideoURL;
         </script>
         {% else %}
-        <!-- 결과 없을 때 아무것도 안뜸-->
+        <img src="https://i.namu.wiki/i/201jiDFc4ngAAODWXAnJsnjd5BGz83M96VYa_r8WRGmuSRPSW-3zRZxx18lLOMgMFW2UHBnGLomDS8XAcBp5AQ.webp" alt="Placeholder Image"style="width: 1000px; height: 600px; position: absolute; z-index: 2; left: 350px; top: 50px; border-radius: 20px;">
         {% endif %}
     </section>
     <!-- 만든이 -->
